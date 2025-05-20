@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var nome = document.getElementById("nome").value;
             if (nome.trim() !== "") {
                 localStorage.setItem("nome", nome);
-                window.location.href = "/quiz.html";
+                window.location.href = "quiz.html";
             } else {
             }
         });
