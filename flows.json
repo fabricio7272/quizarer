@@ -1,0 +1,216 @@
+[
+    {
+        "id": "1a1e7cc8fbdc4b1e",
+        "type": "tab",
+        "label": "Quiz Multiplayer",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7fbb4048dd558025",
+        "type": "http in",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "Resposta",
+        "url": "/resposta",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "b32dfd06fed1b6e8"
+            ]
+        ]
+    },
+    {
+        "id": "6b7ebd2ff9568935",
+        "type": "function",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "function 2",
+        "func": "let conteudo = msg.payload; \nlet user = msg.req?.query?.usuario;\nlet pont = parseInt(msg.req?.query?.pontuacao);\nlet seg = parseInt(msg.req?.query?.segundos);\n\nlet podio = [];\n\ntry {\n    let dadosAntigos = JSON.parse(conteudo);\n    if (Array.isArray(dadosAntigos)) {\n        podio = dadosAntigos;\n    }\n} catch (e) {\n    podio = [];\n}\n\n// Verifica se os dados estão corretos\nif (user && !isNaN(pont) && !isNaN(seg) ) {\n    podio.push({\n        nome: user,\n        pontos: pont,\n        tempo: seg\n    });\n}\n\n// Salva como JSON\nmsg.payload = JSON.stringify(podio, null, 2);\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 160,
+        "wires": [
+            [
+                "6583d200686cf2e2"
+            ]
+        ]
+    },
+    {
+        "id": "da676573505e7e11",
+        "type": "http response",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1110,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b32dfd06fed1b6e8",
+        "type": "file in",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "",
+        "filename": "podio.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "6b7ebd2ff9568935"
+            ]
+        ]
+    },
+    {
+        "id": "6583d200686cf2e2",
+        "type": "file",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "",
+        "filename": "podio.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 850,
+        "y": 160,
+        "wires": [
+            [
+                "da676573505e7e11",
+                "66adc79837076dd5"
+            ]
+        ]
+    },
+    {
+        "id": "66adc79837076dd5",
+        "type": "debug",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "1825e5ae8fda9e06",
+        "type": "http in",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "",
+        "url": "/podioresposta",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "4d7305c53bdbf7c6"
+            ]
+        ]
+    },
+    {
+        "id": "5e1c6784dcf7ee65",
+        "type": "http response",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1110,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "b7bb4fb9a95ce0cc",
+        "type": "function",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "function 1",
+        "func": "let podio = msg.payload;\n\npodio.sort((a, b) => {\n    if (b.pontos !== a.pontos) {\n        return b.pontos - a.pontos;\n    } else {\n        return a.tempo - b.tempo;\n    }\n});\n\nmsg.payload = podio; // <-- não formate como string!\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 320,
+        "wires": [
+            [
+                "5e1c6784dcf7ee65",
+                "2f389d0b1c46782c"
+            ]
+        ]
+    },
+    {
+        "id": "4d7305c53bdbf7c6",
+        "type": "file in",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "",
+        "filename": "podio.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [
+                "852012146c8dd5d7"
+            ]
+        ]
+    },
+    {
+        "id": "852012146c8dd5d7",
+        "type": "json",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "b7bb4fb9a95ce0cc"
+            ]
+        ]
+    },
+    {
+        "id": "2f389d0b1c46782c",
+        "type": "debug",
+        "z": "1a1e7cc8fbdc4b1e",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 380,
+        "wires": []
+    }
+]

@@ -1,0 +1,255 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #C3D1C2;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;  
+  }
+
+  body {
+  background-image: url('/img/planodefundo.png'); 
+  background-position: center; 
+}
+
+.voltando button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  z-index: 1000;
+}
+    .container {
+    padding: 2rem;
+    max-width: 900px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    min-height: 80vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+    #ranking{
+      color:#7E9D7E;
+    }
+
+    .podio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end;
+    text-align: center;
+    height: 250px;
+    background: none;
+    border-radius: 10px;
+    padding: 2rem;
+    box-sizing: border-box;
+    gap: 1rem;
+    margin-bottom: 232px;
+    margin-top: auto;
+  }
+
+    .jogador {
+    background: #7E9D7E;
+    border-radius: 9rem 9rem 0 0;
+    padding-top: 1rem;
+    color: #fff;
+    position: relative;
+  }
+
+  .nome-jogador {
+    margin-bottom: 2rem; 
+    font-weight: bold;
+    color: #7E9D7E;
+  }
+  
+  .primeiro {
+    grid-column: 3;
+    height: 400px;
+  }
+  
+  .segundo {
+    grid-column: 4;
+    height: 300px;
+  }
+  
+  .terceiro {
+    grid-column: 2;
+    height: 200px;
+  }
+  
+  .medalha {
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    margin: 10px auto;
+    object-fit: cover;
+  }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 2rem;
+  }
+
+  .podio {
+    padding: 1rem;
+    gap: 1rem;
+    height: auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .primeiro, .segundo, .terceiro {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .podio {
+    grid-template-columns: 1fr;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    height: auto;
+  }
+
+  .jogador {
+    height: auto;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .nome-jogador {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .medalha {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .nome-jogador {
+    font-size: 1rem;
+  }
+
+  .medalha {
+    width: 60px;
+    height: 60px;
+  }
+
+  .podio {
+    padding: 1rem 0.5rem;
+  }
+
+  .jogador {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    min-height: auto;
+    width: 90%; 
+    max-width: 600px; 
+  }
+
+  h1, #ranking {
+    display: none;
+  }
+
+  .podio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+
+  .jogador {
+    width: 90%;
+    max-width: 300px;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .primeiro,
+  .segundo,
+  .terceiro {
+    grid-column: auto;
+    height: auto;
+  }
+
+  .nome-jogador {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #7E9D7E;
+  }
+
+  .medalha {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    width: 85%;
+    max-width: 500px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: 80%; 
+    max-width: 400px;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    width: 75%; 
+    max-width: 380px;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    width: 70%; 
+    max-width: 360px;
+    padding: 0.5rem;
+  }
+}
