@@ -48,26 +48,32 @@
 
   </div>
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Quizaré</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Quizaré</h1>
+    <label for="nome">Digite seu nome:</label>
+    <input type="text" id="nome" placeholder="Seu nome">
+    <button id="entrar">Entrar no Quiz</button>
+  </div>
+
   <script>
-    function salvarNomeERedirecionar() {
+    document.getElementById("entrar").addEventListener("click", () => {
       const nome = document.getElementById("nome").value.trim();
-      if (nome === "") {
-        alert("Por favor, digite seu nome antes de continuar.");
-        return;
+      if (nome) {
+        localStorage.setItem("nomeUsuario", nome);
+        window.location.href = "quiz.html";
+      } else {
+        alert("Digite seu nome.");
       }
-      localStorage.setItem("nomeUsuario", nome);
-      window.location.href = "quiz.html";
-    }
+    });
   </script>
-<script>
-  const botao = document.querySelector("button");
-
-  botao.addEventListener("click", () => {
-    const nome = document.getElementById("nome").value;
-    localStorage.setItem("nomeUsuario", nome);
-  });
-</script>
-
 </body>
-
 </html>
+
