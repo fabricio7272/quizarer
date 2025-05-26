@@ -19,9 +19,6 @@ const nome_pais = document.getElementById('nome_pais');
 document.addEventListener("DOMContentLoaded", () => {
     iniciarTimer();
     carregarAPI();
-    const nome = localStorage.getItem("nome");
-    if (nome) {
-    }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
