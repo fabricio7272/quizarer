@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pódio</title>
+</head>
+<body>
+  <h1>Pódio</h1>
+  <ul id="ranking"></ul>
 
+  <div class="podio">
+    <div>🥈 2º <span class="nome-jogador"></span></div>
+    <div>🥇 1º <span class="nome-jogador"></span></div>
+    <div>🥉 3º <span class="nome-jogador"></span></div>
+  </div>
+
+  <script>
+    fetch("http://127.0.0.1:1880/podioresposta")
+      .then(res => res.text())
+      .then(json => {
+        const jogadores = JSON.parse(json);
+        jogadores.sort((a, b) => {
+          if (b.pontos !== a.pontos) return b.pontos - a.pontos;
+          return a.tempo - b.tempo;
+        });
+
+        const lista = document.getElementById("ranking");
+        jogadores.forEach((j, i) => {
+          const li = document.createElement("li");
+          li.textContent = `${i + 1}º - ${j.nome} - ${j.pontos} pts - ${(j.tempo / 1000).toFixed(2)} s`;
+          lista.appendChild(li);
+        });
+
+        const nomesPodio = document.querySelectorAll(".podio .nome-jogador");
+        if (jogadores[1]) nomesPodio[0].textContent = jogadores[1].nome; // 🥈
+        if (jogadores[0]) nomesPodio[1].textContent = jogadores[0].nome; // 🥇
+        if (jogadores[2]) nomesPodio[2].textContent = jogadores[2].nome; // 🥉
+      })
+      .catch(console.error);
+  </script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
