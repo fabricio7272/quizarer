@@ -14,6 +14,8 @@ const botao = document.getElementById('btn-resposta');
 const pontuacaoElemento = document.getElementById('pontuacao');
 const nome_pais = document.getElementById('nome_pais'); 
 
+const nomeUsuario = localStorage.getItem("nomeUsuario") || "Anônimo";
+document.getElementById("nomeUsuario").textContent = nomeUsuario;
 
 
 document.addEventListener("DOMContentLoaded", () => {
