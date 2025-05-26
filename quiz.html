@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+  <h2>Bem-vindo, <span id="nomeUsuario"></span></h2>
+  <div>Pontuação: <span id="pontuacao">0</span></div>
+  <button onclick="finalizarQuiz()">Finalizar Quiz</button>
 
+  <script>
+    const nome = localStorage.getItem("nomeUsuario") || "Anônimo";
+    document.getElementById("nomeUsuario").textContent = nome;
+
+    let pontos = 80; // exemplo
+    let tempo = 32000; // tempo total em ms (ex: 32s)
+
+    function finalizarQuiz() {
+      const dados = {
+        nome,
+        pontos,
+        tempo
+      };
+
+      fetch("http://127.0.0.1:1880/podioresposta", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dados)
+      })
+      .then(res => res.text())
+      .then(() => {
+        window.location.href = "ranking.html";
+      })
+      .catch(err => {
+        console.error("Erro ao enviar:", err);
+        alert("Erro ao enviar resultado.");
+      });
+    }
+  </script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
