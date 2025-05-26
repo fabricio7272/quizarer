@@ -1,46 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Quiz</title>
-  <link rel="stylesheet" href="css/quiz.css">
-</head>
-<body>
-  <h2>Bem-vindo, <span id="nomeUsuario"></span></h2>
-  <div>Pontuação: <span id="pontuacao">0</span></div>
-  <button onclick="finalizarQuiz()">Finalizar Quiz</button>
 
-  <script>
-    const nome = localStorage.getItem("nomeUsuario") || "Anônimo";
-    document.getElementById("nomeUsuario").textContent = nome;
-
-    let pontos = 80; // exemplo
-    let tempo = 32000; // tempo total em ms (ex: 32s)
-
-    function finalizarQuiz() {
-      const dados = {
-        nome,
-        pontos,
-        tempo
-      };
-
-      fetch("http://127.0.0.1:1880/podioresposta", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dados)
-      })
-      .then(res => res.text())
-      .then(() => {
-        window.location.href = "ranking.html";
-      })
-      .catch(err => {
-        console.error("Erro ao enviar:", err);
-        alert("Erro ao enviar resultado.");
-      });
-    }
-  </script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,28 +16,30 @@
 
 <body> 
 
-    <div class="voltando">
-        <a href="index.html">
+      <div class="voltando">
+            <a href="index.html">
             <button>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.75 6.25V8.75H17.625C18.9375 8.75 20.0781 9.16667 21.0469 10C22.0156 10.8333 22.5 11.875 22.5 13.125C22.5 14.375 22.0156 15.4167 21.0469 16.25C20.0781 17.0833 18.9375 17.5 17.625 17.5H9.75L13 14.25L11.25 12.5L5 18.75L11.25 25L13 23.25L9.75 20H17.625C19.6458 20 21.3802 19.3438 22.8281 18.0312C24.276 16.7188 25 15.0833 25 13.125C25 11.1667 24.276 9.53125 22.8281 8.21875C21.3802 6.90625 19.6458 6.25 17.625 6.25H8.75Z" fill="white" />
+                <path d="M8.75 6.25V8.75H17.625C18.9375 8.75 20.0781 9.16667 21.0469 10C22.0156 10.8333 22.5 11.875 22.5 13.125C22.5 14.375 22.0156 15.4167 21.0469 16.25C20.0781 17.0833 18.9375 17.5 17.625 17.5H9.75L13 14.25L11.25 12.5L5 18.75L11.25 25L13 23.25L9.75 20H17.625C19.6458 20 21.3802 19.3438 22.8281 18.0312C24.276 16.7188 25 15.0833 25 13.125C25 11.1667 24.276 9.53125 22.8281 8.21875C21.3802 6.90625 19.6458 6.25 17.625 6.25H8.75Z" fill="white" />
                 </svg>
             </button>
-        </a>
-    </div>
+            </a>
+      </div>
 
     <div class="container">
 
         <div class="perfil-card">
 
             <div class="perfil-info">
-                <h3 id="nomeUsuario">Usuário</h3>
+                <h3 id="nomeUsuario"> Usuario </h3>
                 <div id="pontuacao">Pontos: 0</div>
             </div>
 
         </div>
 
+
         <div id="question-container">
+
             <h1 id="question">De qual país é essa bandeira?</h1>
 
             <img class="bandeira" src="" alt="Bandeira do país" width="200" style="display: block; margin: 20px 0;">
@@ -88,43 +50,41 @@
             </div>
 
             <div id="timer">Timer: 0</div>
+
         </div>
 
     </div>
 
     <div id="popupAcerto" class="popup">
+
         <div class="popup-content">
-            <div class="message">
-                <div class="icon">✔️</div>
-                <p>Certo!</p>
-            </div>
-            <button id="closePopupAcerto" class="continue-btn">Continuar</button>
+          <div class="message">
+            <div class="icon">✔️</div>
+            <p>Certo!</p>
+          </div>
+          <button id="closePopupAcerto" class="continue-btn">Continuar</button>
         </div>
+
     </div>
 
     <div id="popupErro" class="popup">
+
         <div class="popup-content">
-            <div class="message">
-                <div class="icon">❌</div>
-                <p id="erroNomePais"><strong>Resposta Correta:</strong><br>Brasil</p>
-            </div>
-            <button id="closePopupErro" class="continue-btn">Continuar</button>
+          <div class="message">
+            <div class="icon">❌</div>
+            <p id="erroNomePais"><strong>Resposta Correta:</strong><br>Brasil</p>
+          </div>
+          <button id="closePopupErro" class="continue-btn">Continuar</button>
         </div>
+      
     </div>
 
     <audio id="somAcerto" src="img/acerto.mp3"></audio>
     <audio id="somErro" src="img/erro.mp3"></audio>
 
-    <!-- Scripts -->
+
     <script src="quiz.js"></script> 
 
-    <script>
-        // Recuperar o nome do localStorage ao carregar a página
-        document.addEventListener("DOMContentLoaded", function () {
-            const nomeUsuario = localStorage.getItem("nomeUsuario") || "Usuário";
-            document.getElementById("nomeUsuario").textContent = nomeUsuario;
-        });
-    </script>
 
 </body>
 </html>
