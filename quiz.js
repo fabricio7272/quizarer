@@ -1,3 +1,4 @@
+// Declara variáveis globais do jogo
 let pais;
 let bandeira;
 let pais_br;
@@ -7,6 +8,7 @@ let tempo = 0;
 let intervaloTimer;
 let api = [];
 
+// Seleciona elementos para manipulação
 const timerElemento = document.getElementById("timer");
 const img = document.querySelector('.bandeira');
 const frm = document.getElementById('input-resposta'); 
@@ -14,6 +16,7 @@ const botao = document.getElementById('btn-resposta');
 const pontuacaoElemento = document.getElementById('pontuacao');
 const nome_pais = document.getElementById('nome_pais'); 
 
+// Obtém nome do usuário salvo no localStorage 
 const nomeUsuario = localStorage.getItem("nomeUsuario") || "Anônimo";
 document.getElementById("nomeUsuario").textContent = nomeUsuario;
 
@@ -23,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarAPI();
 });
 
+// Atualiza o nome do usuário se estiver salvo no localStorage
 document.addEventListener("DOMContentLoaded", function () {
     const nomeSalvo = localStorage.getItem("nome");
     if (nomeSalvo) {
@@ -30,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Tempo
+// Inicia o timer regressivo com 90 segundos
 function iniciarTimer() {
     tempo = 90;
     timerElemento.innerText = `Tempo restante: ${tempo}s`;
@@ -46,10 +50,12 @@ function iniciarTimer() {
     }, 1000);
 }
 
+// Para o timer
 function pararTimer() {
     clearInterval(intervaloTimer);
 }
 
+// Carrega dados dos países da API REST Countries
 function carregarAPI() {
     fetch('https://restcountries.com/v2/all')
         .then(response => response.json())
@@ -60,6 +66,7 @@ function carregarAPI() {
         .catch(error => console.error("Erro ao carregar API:", error));
 }
 
+// Escolhe um país aleatório da lista da API e atualiza a bandeira na tela
 function sortPais() {    
     const paisAleatorio = api[Math.floor(Math.random() * api.length)];
     pais = paisAleatorio.name;
@@ -70,7 +77,7 @@ function sortPais() {
     nome_pais.innerText = "";
 }
 
-// Resposta
+// Evento ao clicar no botão para enviar resposta
 botao.addEventListener("click", () => {
     const resposta_pais = frm.value.trim();
 
@@ -127,7 +134,7 @@ botao.addEventListener("click", () => {
 });
 
 
-// Fim
+// Finaliza o jogo, para o timer e envia dados para o servidor antes de ir para o pódio
 function finalizarJogo() {
     pararTimer();
     const nome = localStorage.getItem("nome");
@@ -137,7 +144,7 @@ function finalizarJogo() {
     window.location.href = "podio.html";
 }
 
-
+// Envia dados do jogador para o servidor via requisição fetch
 function enviarDadosParaServidor(nome, pontos, tempo) {
     const url = `http://127.0.0.1:1880/resposta?usuario=${encodeURIComponent(nome)}&pontuacao=${pontos}&segundos=${tempo}`;
 
