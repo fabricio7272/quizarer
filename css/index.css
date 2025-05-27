@@ -1,3 +1,5 @@
+
+/* Reset e definição da fonte */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,6 +7,7 @@
     font-family: 'Roboto Condensed';
   }
 
+/* Estilo geral do body */
   body {
     background-color: #C3D1C2;
     display: flex;
@@ -13,6 +16,7 @@
     height: 100vh;
   }
 
+/* Container principal e organização da página em colunas */
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -25,6 +29,7 @@
     align-items: center;
   }
 
+/* Estilização do formulario de login */
     .form-area {
     background-color: white;
     padding: 60px; 
@@ -100,7 +105,8 @@
   button:hover {
     background-color: #4e7053;
   }
-  
+
+/* Imagem decorativa*/
   .image-area img {
     max-width: 100%;
     height: auto;
@@ -108,6 +114,7 @@
   }
 
 
+/* Responsividade para telas menores que 800px */
   @media (max-width: 800px) {
     body {
       flex-direction: column;
@@ -150,10 +157,12 @@
     }
   
     .image-area img {
-        display: none; 
+        display: none; /* Imagem decorativa some em telas pequenas */
+
     }
   }
-  
+
+/* Responsividade para telas com altura muito baixa */
 @media (max-height: 341px) {
   body {
       flex-direction: column;
@@ -194,4 +203,4 @@
 }
 
 
-  
+    
