@@ -1,3 +1,4 @@
+/* Reset e definição da fonte */
 body {
     margin: 0;
     font-family: sans-serif;
@@ -8,11 +9,13 @@ body {
     min-height: 100vh;  
   }
 
+/* Imagem de fundo centralizada no body */
   body {
   background-image: url('img/planodefundo.png'); 
   background-position: center; 
 }
 
+/* Estilo do botão "voltar" fixo no canto superior esquerdo */
 .voltando button {
   position: fixed;
   top: 20px;
@@ -22,6 +25,8 @@ body {
   border: none;
   z-index: 1000;
 }
+
+/* Container principal */
     .container {
     padding: 2rem;
     max-width: 900px;
@@ -38,6 +43,7 @@ body {
       color:#7E9D7E;
     }
 
+/* Área do pódio com grid de 3 colunas e alinhamento na parte inferior */
     .podio {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -90,12 +96,14 @@ body {
     object-fit: cover;
   }
 
+/* Estilo geral para todas as imagens, responsivo */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
+/* Responsividade para telas até 1024px */
 @media (max-width: 1024px) {
   .container {
     padding: 2rem;
@@ -113,6 +121,7 @@ img {
   }
 }
 
+/* Responsividade para telas até 768px */
 @media (max-width: 768px) {
   .container {
     padding: 1.5rem;
@@ -143,6 +152,7 @@ img {
   }
 }
 
+/* Responsividade para telas até 480px */
 @media (max-width: 480px) {
   .container {
     padding: 1rem;
@@ -166,6 +176,7 @@ img {
   }
 }
 
+/* Ajustes específicos para telas até 768px (segunda regra para .container e pódio) */
 @media (max-width: 768px) {
   .container {
     padding: 1.5rem;
@@ -222,6 +233,7 @@ img {
   }
 }
 
+/* Responsividade progressiva para telas menores que 540px */
 @media (max-width: 540px) {
   .container {
     width: 85%;
@@ -230,6 +242,7 @@ img {
   }
 }
 
+/* Ajustes para telas muito pequenas: 390px */
 @media (max-width: 390px) {
   .container {
     width: 80%; 
@@ -238,6 +251,7 @@ img {
   }
 }
 
+/* Ajustes para telas muito pequenas: 375px */
 @media (max-width: 375px) {
   .container {
     width: 75%; 
@@ -246,6 +260,7 @@ img {
   }
 }
 
+/* Ajustes para telas muito pequenas: 360px */
 @media (max-width: 360px) {
   .container {
     width: 70%; 
