@@ -1,3 +1,4 @@
+// Verifica e redireciona
 document.addEventListener("DOMContentLoaded", function () {
     var botaoJogar = document.getElementById("jogarBnt");
     if (botaoJogar) {
