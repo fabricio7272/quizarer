@@ -1,5 +1,5 @@
 // Faz requisição para obter respostas do pódio
-fetch('http://127.0.0.1:1880/podioresposta')
+fetch('http://192.168.118.161:1880/podioresposta')
   .then(res => res.text())
   .then(texto => {
     try {
