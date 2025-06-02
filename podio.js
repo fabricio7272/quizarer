@@ -14,7 +14,7 @@ fetch('http://127.0.0.1:1880/podioresposta')
       jogadores.forEach(({ nome, pontos, tempo }, i) => {
         const li = document.createElement('li');
         li.innerHTML =
-          `<strong>${i + 1}º:</strong> ${nome} - ${pontos} pts - ${(tempo / 90).toFixed(2)} s`;
+          `<strong>${i + 1}º:</strong> ${nome} - ${pontos} pts - ${(tempo - 90).toFixed(2)} s`;
         lista.appendChild(li);
       });
 
