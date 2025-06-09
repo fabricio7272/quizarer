@@ -57,7 +57,7 @@ function pararTimer() {
 
 // Carrega dados dos países da API REST Countries
 function carregarAPI() {
-    fetch('https://restcountries.com/v2/all')
+    fetch('https://restcountries.com/v2/all?fields=name,alpha2Code,flags,translations')
         .then(response => response.json())
         .then(data => {
             api = data;
@@ -65,6 +65,8 @@ function carregarAPI() {
         })
         .catch(error => console.error("Erro ao carregar API:", error));
 }
+
+
 
 // Escolhe um país aleatório da lista da API e atualiza a bandeira na tela
 function sortPais() {    
